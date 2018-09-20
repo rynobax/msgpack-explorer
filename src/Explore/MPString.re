@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("MPString");
 
-let make = (~header, ~data, _children) => {
+let make = (~header: int, ~data: array(int), _children) => {
   ...component,
   render: _self =>
     <div
@@ -18,8 +18,13 @@ let make = (~header, ~data, _children) => {
       />
       {
         ReasonReact.array(
-          Array.map(
-            c => <Block raw=c header={String.make(1, c->char_of_int)} />,
+          Array.mapi(
+            (i, c) =>
+              <Block
+                raw=c
+                header={String.make(1, c->char_of_int)}
+                key={string_of_int(i)}
+              />,
             data,
           ),
         )
