@@ -7,3 +7,4 @@ npm-debug.log
 .vscode
 build
 yarn-error.log
+.bs.js

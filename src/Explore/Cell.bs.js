@@ -5,7 +5,7 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var Util$ReactTemplate = require("../Util.bs.js");
-var MPString$ReactTemplate = require("./Cells/MPString.bs.js");
+var MPString$ReactTemplate = require("./MPString.bs.js");
 
 var component = ReasonReact.statelessComponent("Cell");
 
@@ -32,7 +32,7 @@ function make(data, _) {
                       var match = Util$ReactTemplate.splitAt(hex[1], 5);
                       _hex = match[1];
                       _$staropt$star = /* :: */[
-                        ReasonReact.element(undefined, undefined, MPString$ReactTemplate.make($$Array.of_list(match[0]), /* array */[])),
+                        ReasonReact.element(undefined, undefined, MPString$ReactTemplate.make(a, $$Array.of_list(match[0]), /* array */[])),
                         res
                       ];
                       continue ;

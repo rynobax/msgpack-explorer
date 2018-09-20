@@ -13,7 +13,7 @@ let make = (~data, _children) => {
           let len = 5;
           let (head, tail) = Util.splitAt(rest, len);
           parseHex(
-            ~res=[<MPString data={Array.of_list(head)} />, ...res],
+            ~res=[<MPString header=a data={Array.of_list(head)} />, ...res],
             tail,
           );
         | _ => res

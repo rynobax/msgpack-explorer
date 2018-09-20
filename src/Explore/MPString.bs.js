@@ -6,11 +6,14 @@ var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Printf = require("bs-platform/lib/js/printf.js");
+var $$String = require("bs-platform/lib/js/string.js");
+var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Block$ReactTemplate = require("./Block.bs.js");
 
 var component = ReasonReact.statelessComponent("MPString");
 
-function make(data, _) {
+function make(header, data, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -22,20 +25,29 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              var strings = $$Array.map((function (e) {
-                      return Curry._1(Printf.sprintf(/* Format */[
-                                      /* Char */Block.__(0, [/* End_of_format */0]),
-                                      "%c"
-                                    ]), e);
-                    }), data);
               return React.createElement("div", {
                           style: {
                             backgroundColor: "#EFE",
+                            display: "flex",
                             padding: "5px"
                           }
-                        }, $$Array.map((function (prim) {
-                                return prim;
-                              }), strings));
+                        }, ReasonReact.element(undefined, undefined, Block$ReactTemplate.make(Curry._1(Printf.sprintf(/* Format */[
+                                          /* String_literal */Block.__(11, [
+                                              "str(",
+                                              /* Int */Block.__(4, [
+                                                  /* Int_i */3,
+                                                  /* No_padding */0,
+                                                  /* No_precision */0,
+                                                  /* Char_literal */Block.__(12, [
+                                                      /* ")" */41,
+                                                      /* End_of_format */0
+                                                    ])
+                                                ])
+                                            ]),
+                                          "str(%i)"
+                                        ]), data.length), header, /* array */[])), $$Array.map((function (c) {
+                                return ReasonReact.element(undefined, undefined, Block$ReactTemplate.make($$String.make(1, Pervasives.char_of_int(c)), c, /* array */[]));
+                              }), data));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
