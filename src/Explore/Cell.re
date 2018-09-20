@@ -338,6 +338,50 @@ let make = (~data, _children) => {
             tail,
           );
 
+        /* Binary */
+        | 0xc4 =>
+          /* 1 Byte Binary Header */
+          res
+
+        | 0xc5 =>
+          /* 2 Byte Binary Header */
+          res
+
+        | 0xc6 =>
+          /* 2 Byte Binary Header */
+          res
+
+        /* Array */
+        | 0xAA =>
+          /* Included Array Header */
+          res
+
+        | 0xdc =>
+          /* 2 Byte Array Header */
+          res
+
+        | 0xdd =>
+          /* 4 Byte Array Header */
+          res
+
+        /* Map */
+        | 0xAB =>
+          /* Included Map Header */
+          res
+
+        | 0xde =>
+          /* 2 Byte Map Header */
+          res
+
+        | 0xdf =>
+          /* 4 Byte Map Header */
+          res
+
+        /* Unimplemented */
+        /* Maybe throw error and use componentDidCatch to display msg */
+        /* EXT */
+        /* Timestamp */
+
         /* UNKNOWN */
         | _ => res
         }
