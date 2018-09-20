@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("MPString");
 
-let make = (~header, ~raw, _children) => {
+let make = (~header: string, ~raw: list(int), _children) => {
   ...component,
   render: _self =>
     <div
@@ -11,10 +11,22 @@ let make = (~header, ~raw, _children) => {
           ~flexDirection="column",
           ~justifyContent="center",
           ~textAlign="center",
+          /* ~borderColor="#000",
+             ~borderWidth="1px",
+             ~borderStyle="solid", */
           (),
         )
       }>
       <div> {ReasonReact.string(header)} </div>
-      <div> {ReasonReact.string(Printf.sprintf("%X", raw))} </div>
+      <div>
+        {
+          ReasonReact.array(
+            Array.map(
+              ReasonReact.string,
+              Array.map(Printf.sprintf(" %X "), Array.of_list(raw)),
+            ),
+          )
+        }
+      </div>
     </div>,
 };
