@@ -23,7 +23,7 @@ let make = (~header: string, ~raw: list(int), _children) => {
           ReasonReact.array(
             Array.map(
               ReasonReact.string,
-              Array.map(Printf.sprintf(" %X "), Array.of_list(raw)),
+              Array.map(Printf.sprintf(" %02X "), Array.of_list(raw)),
             ),
           )
         }
