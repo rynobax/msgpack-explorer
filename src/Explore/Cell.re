@@ -395,9 +395,16 @@ let make = (~data, _children) => {
           );
 
         /* Array */
-        | 0xAA =>
-          /* Included Array Header */
-          res
+        | _ when a >= 0b10010000 =>
+          /* 1 Byte Array Header */
+          /* Todo: need to recurse through objects */
+          let mask = 0b00001111->Int32.of_int;
+          let len = Int32.of_int(a)->Int32.logand(mask)->Int32.to_int;
+          let (arrContent, tail) = Util.splitAt(rest, len);
+          parseHex(
+            ~res=[<MPArray header=[a] len arrContent key />, ...res],
+            tail,
+          );
 
         | 0xdc =>
           /* 2 Byte Array Header */
