@@ -341,15 +341,58 @@ let make = (~data, _children) => {
         /* Binary */
         | 0xc4 =>
           /* 1 Byte Binary Header */
-          res
+          let len = List.hd(rest);
+          let rest = List.tl(rest);
+          let (binContent, tail) = Util.splitAt(rest, len);
+
+          parseHex(
+            ~res=[<MPBinary header=[len] binContent len key />, ...res],
+            tail,
+          );
 
         | 0xc5 =>
           /* 2 Byte Binary Header */
-          res
+          let (head, rest) = Util.splitAt(rest, 2);
+          let len =
+            try (
+              Printf.sprintf(
+                "0x%02X%02X",
+                List.nth(head, 0),
+                List.nth(head, 1),
+              )
+              ->int_of_string
+            ) {
+            | _ => 0
+            };
+          let (binContent, tail) = Util.splitAt(rest, len);
+
+          parseHex(
+            ~res=[<MPBinary header=head binContent len key />, ...res],
+            tail,
+          );
 
         | 0xc6 =>
-          /* 2 Byte Binary Header */
-          res
+          /* 4 Byte Binary Header */
+          let (head, rest) = Util.splitAt(rest, 4);
+          let len =
+            try (
+              Printf.sprintf(
+                "0x%02X%02X%02X%02X",
+                List.nth(head, 0),
+                List.nth(head, 1),
+                List.nth(head, 2),
+                List.nth(head, 3),
+              )
+              ->int_of_string
+            ) {
+            | _ => 0
+            };
+          let (binContent, tail) = Util.splitAt(rest, len);
+
+          parseHex(
+            ~res=[<MPBinary header=head binContent len key />, ...res],
+            tail,
+          );
 
         /* Array */
         | 0xAA =>

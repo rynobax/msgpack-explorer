@@ -7,7 +7,7 @@ let component = ReasonReact.reducerComponent("App");
 
 let make = _children => {
   ...component,
-  initialState: () => {dataString: "f3"},
+  initialState: () => {dataString: "c4 05 f4 7f 42 24 88"},
   reducer: (action, _state) =>
     switch (action) {
     | DataChange(str) => ReasonReact.Update({dataString: str})
