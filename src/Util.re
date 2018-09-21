@@ -21,3 +21,6 @@ let addSign = (value: int64, nBits: int) => {
     value->Int64.to_string;
   };
 };
+
+let hex_of_int_list = (l: list(int)) =>
+  "0x" ++ String.concat("", List.map(Printf.sprintf("%02X"), l));
