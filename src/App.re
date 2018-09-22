@@ -7,12 +7,15 @@ let component = ReasonReact.reducerComponent("App");
 
 let make = _children => {
   ...component,
-  initialState: () => {dataString: "dc 00 11 01 02 03 04 05 06 07 08 09 00 0a 0b 0c 0d 0e 0f 10"},
+  initialState: () => {
+    dataString: "de 00 12 a1 30 00 a1 31 01 a1 32 02 a1 33 03 a1 34 04 a1 35 05 a1 36 06 a1 37 07 a1 38 08 a1 39 09 a2 31 30 0a a2 31 31 0b a2 31 32 0c a2 31 33 0d a2 31 34 0e a2 31 35 0f a2 31 36 10 a2 31 37 11",
+  },
   reducer: (action, _state) =>
     switch (action) {
     | DataChange(str) => ReasonReact.Update({dataString: str})
     },
-  render: self =>
+  render: self => {
+    let dataString = String.trim(self.state.dataString);
     <div
       style={
         ReactDOMRe.Style.make(
@@ -26,7 +29,7 @@ let make = _children => {
       <div
         style={
           ReactDOMRe.Style.make(
-            ~width="300px",
+            ~flex="0 0 300px",
             ~display="flex",
             ~flexDirection="column",
             (),
@@ -36,10 +39,11 @@ let make = _children => {
           value={self.state.dataString}
           onChange={str => self.ReasonReact.send(DataChange(str))}
         />
-        <Result />
+        <Result dataString />
       </div>
       <div style={ReactDOMRe.Style.make(~flex="1", ())}>
-        <Explore dataString={String.trim(self.state.dataString)} />
+        <Explore dataString />
       </div>
-    </div>,
+    </div>;
+  },
 };

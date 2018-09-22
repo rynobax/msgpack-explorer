@@ -1,25 +1,26 @@
-let component = ReasonReact.statelessComponent("MPArray");
+let component = ReasonReact.statelessComponent("MPMap");
 
 let make =
     (
       ~header: list(int),
-      ~arrContent: array(ReasonReact.reactElement),
+      ~mapContent: array(ReasonReact.reactElement),
       ~len: int,
       _children,
     ) => {
   ...component,
   render: _self =>
     <div
+      className="MPMap"
       style={
         ReactDOMRe.Style.make(
           ~padding="5px",
-          ~flexWrap="wrap",
           ~display="flex",
+          ~flexWrap="wrap",
           ~border="1px solid black",
           (),
         )
       }>
-      <Block header={Printf.sprintf("arr(%i)", len)} raw=header />
-      {ReasonReact.array(arrContent)}
+      <Block header={Printf.sprintf("map(%i)", len / 2)} raw=header />
+      {ReasonReact.array(mapContent)}
     </div>,
 };

@@ -11,12 +11,12 @@ let make = (~data, _children) => {
       | [a, ...rest] =>
         switch (a) {
         /* NIL */
-        | 0xc0 => (<Block header="Nil" raw=[a] key />, rest)
+        | 0xc0 => (<Block header="Nil" raw=[a] color="#FAA" key />, rest)
 
         /* BOOLEANS */
-        | 0xc2 => (<Block header="false" raw=[a] key />, rest)
+        | 0xc2 => (<Block header="false" raw=[a] color="#AAF" key />, rest)
 
-        | 0xc3 => (<Block header="true" raw=[a] key />, rest)
+        | 0xc3 => (<Block header="true" raw=[a] color="#AAF" key />, rest)
 
         /* INTEGERS */
         | _ when a < 0b10000000 =>
@@ -206,17 +206,54 @@ let make = (~data, _children) => {
           (<MPArray header=[a] len arrContent key />, rest);
 
         /* Map */
-        | 0xAB =>
+        | _ when a >= 0b10000000 && a <= 0b10001111 =>
           /* Included Map Header */
-          (ReasonReact.null, rest)
+          /* 1 Byte Array Header */
+          let mask = 0b00001111->Int32.of_int;
+          let len = Int32.of_int(a)->Int32.logand(mask)->Int32.to_int * 2;
+          let tupleContent = Array.make(len, (ReasonReact.null, []));
+          for (i in 0 to len - 1) {
+            let (_, rest) =
+              try (tupleContent[i - 1]) {
+              | _ => (ReasonReact.null, rest)
+              };
+            tupleContent[i] = parseHex(rest);
+          };
+          let mapContent = Array.map(((e, _)) => e, tupleContent);
+          let (_, rest) = tupleContent[len - 1];
+          (<MPMap header=[a] len mapContent key />, rest);
 
         | 0xde =>
           /* 2 Byte Map Header */
-          (ReasonReact.null, rest)
+          let (head, rest) = Util.splitAt(rest, 2);
+          let len = Util.hex_of_int_list(head)->int_of_string * 2;
+          let tupleContent = Array.make(len, (ReasonReact.null, []));
+          for (i in 0 to len - 1) {
+            let (_, rest) =
+              try (tupleContent[i - 1]) {
+              | _ => (ReasonReact.null, rest)
+              };
+            tupleContent[i] = parseHex(rest);
+          };
+          let mapContent = Array.map(((e, _)) => e, tupleContent);
+          let (_, rest) = tupleContent[len - 1];
+          (<MPMap header=[a] len mapContent key />, rest);
 
         | 0xdf =>
           /* 4 Byte Map Header */
-          (ReasonReact.null, rest)
+          let (head, rest) = Util.splitAt(rest, 4);
+          let len = Util.hex_of_int_list(head)->int_of_string * 2;
+          let tupleContent = Array.make(len, (ReasonReact.null, []));
+          for (i in 0 to len - 1) {
+            let (_, rest) =
+              try (tupleContent[i - 1]) {
+              | _ => (ReasonReact.null, rest)
+              };
+            tupleContent[i] = parseHex(rest);
+          };
+          let mapContent = Array.map(((e, _)) => e, tupleContent);
+          let (_, rest) = tupleContent[len - 1];
+          (<MPMap header=[a] len mapContent key />, rest);
 
         /* Unimplemented */
         /* Maybe throw error and use componentDidCatch to display msg */

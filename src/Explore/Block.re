@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("MPString");
 
-let make = (~header: string, ~raw: list(int), _children) => {
+let make = (~header: string, ~raw: list(int), ~color: string="", _children) => {
   ...component,
   render: _self =>
     <div
@@ -11,9 +11,7 @@ let make = (~header: string, ~raw: list(int), _children) => {
           ~flexDirection="column",
           ~justifyContent="center",
           ~textAlign="center",
-          /* ~borderColor="#000",
-             ~borderWidth="1px",
-             ~borderStyle="solid", */
+          ~backgroundColor=color,
           (),
         )
       }>
