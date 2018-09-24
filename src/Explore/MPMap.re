@@ -21,7 +21,7 @@ let make =
           (),
         )
       }>
-      <Block header={Printf.sprintf("map(%i)", len / 2)} raw=header />
+      <Cell header={Printf.sprintf("map(%i)", len / 2)} raw=header />
       {
         ReasonReact.array(
           Array.mapi(

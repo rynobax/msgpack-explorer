@@ -19,7 +19,7 @@ let make =
           (),
         )
       }>
-      <Block header raw=[headerRaw] />
-      <Block header=num raw />
+      <Cell header raw=[headerRaw] />
+      <Cell header=num raw />
     </div>,
 };

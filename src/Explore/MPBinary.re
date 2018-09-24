@@ -13,11 +13,11 @@ let make =
           (),
         )
       }>
-      <Block header={Printf.sprintf("bin(%i)", len)} raw=header />
+      <Cell header={Printf.sprintf("bin(%i)", len)} raw=header />
       {
         ReasonReact.array(
           Array.mapi(
-            (i, c) => <Block raw=[c] header="." key={string_of_int(i)} />,
+            (i, c) => <Cell raw=[c] header="." key={string_of_int(i)} />,
             binContent->Array.of_list,
           ),
         )

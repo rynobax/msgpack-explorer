@@ -20,7 +20,7 @@ let make =
           (),
         )
       }>
-      <Block header={Printf.sprintf("arr(%i)", len)} raw=header />
+      <Cell header={Printf.sprintf("arr(%i)", len)} raw=header />
       {ReasonReact.array(arrContent)}
     </div>,
 };

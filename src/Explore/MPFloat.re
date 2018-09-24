@@ -12,7 +12,7 @@ let make = (~header: int, ~raw: list(int), ~num: float, _children) => {
           (),
         )
       }>
-      <Block header="float 32" raw=[header] />
-      <Block header={Printf.sprintf("%f", num)} raw />
+      <Cell header="float 32" raw=[header] />
+      <Cell header={Printf.sprintf("%f", num)} raw />
     </div>,
 };

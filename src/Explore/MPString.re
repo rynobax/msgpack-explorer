@@ -13,8 +13,8 @@ let make =
           (),
         )
       }>
-      <Block header={Printf.sprintf("str(%i)", len)} raw=header />
-      <Block
+      <Cell header={Printf.sprintf("str(%i)", len)} raw=header />
+      <Cell
         raw=strContent
         header={
           String.concat(
