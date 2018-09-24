@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
     "webpack:production": "cross-env NODE_ENV=production webpack",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run webpack:production && gh-pages -d build"
   },
   "keywords": [
     "BuckleScript"

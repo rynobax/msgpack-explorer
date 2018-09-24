@@ -7,7 +7,7 @@ let make = (~header: int, ~raw: list(int), ~num: float, _children) => {
       style={
         ReactDOMRe.Style.make(
           ~padding="5px",
-          ~backgroundColor="#EEF",
+          ~backgroundColor=Color.float,
           ~display="flex",
           (),
         )

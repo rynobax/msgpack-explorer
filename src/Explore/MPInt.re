@@ -14,7 +14,7 @@ let make =
       style={
         ReactDOMRe.Style.make(
           ~padding="5px",
-          ~backgroundColor="#FFE",
+          ~backgroundColor=Color.int,
           ~display="flex",
           (),
         )

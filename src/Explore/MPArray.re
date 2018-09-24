@@ -16,6 +16,7 @@ let make =
           ~flexWrap="wrap",
           ~display="flex",
           ~border="1px solid black",
+          ~backgroundColor=Color.array,
           (),
         )
       }>

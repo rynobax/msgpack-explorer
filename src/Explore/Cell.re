@@ -11,12 +11,18 @@ let make = (~data, _children) => {
       | [a, ...rest] =>
         switch (a) {
         /* NIL */
-        | 0xc0 => (<Block header="Nil" raw=[a] color="#FAA" key />, rest)
+        | 0xc0 => (<Block header="Nil" raw=[a] color=Color.nil key />, rest)
 
         /* BOOLEANS */
-        | 0xc2 => (<Block header="false" raw=[a] color="#AAF" key />, rest)
+        | 0xc2 => (
+            <Block header="false" raw=[a] color=Color.boolean key />,
+            rest,
+          )
 
-        | 0xc3 => (<Block header="true" raw=[a] color="#AAF" key />, rest)
+        | 0xc3 => (
+            <Block header="true" raw=[a] color=Color.boolean key />,
+            rest,
+          )
 
         /* INTEGERS */
         | _ when a < 0b10000000 =>
@@ -25,7 +31,10 @@ let make = (~data, _children) => {
             try (Printf.sprintf("0x%02X", a)->int_of_string) {
             | _ => 0
             };
-          (<Block header=num->string_of_int raw=[a] key />, rest);
+          (
+            <Block header=num->string_of_int raw=[a] color=Color.int key />,
+            rest,
+          );
 
         | _ when a >= 0b11100000 =>
           /* negative 5 bit int */
@@ -36,7 +45,10 @@ let make = (~data, _children) => {
               }
             )
             - 256;
-          (<Block header=num->string_of_int raw=[a] key />, rest);
+          (
+            <Block header=num->string_of_int raw=[a] color=Color.int key />,
+            rest,
+          );
 
         | 0xcc =>
           /* uint 8 */

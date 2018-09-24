@@ -8,7 +8,7 @@ let make =
       style={
         ReactDOMRe.Style.make(
           ~padding="5px",
-          ~backgroundColor="#FEE",
+          ~backgroundColor=Color.binary,
           ~display="flex",
           (),
         )
