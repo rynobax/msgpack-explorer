@@ -12,10 +12,23 @@ let make = (~header: string, ~raw: list(int), ~color: string="", _children) => {
           ~justifyContent="center",
           ~textAlign="center",
           ~backgroundColor=color,
+          ~borderWidth="1px",
+          ~borderStyle="solid",
+          ~borderColor="rgb(0, 0, 0, 0.2)",
           (),
         )
       }>
-      <div> {ReasonReact.string(header)} </div>
+      <div
+        style={
+          ReactDOMRe.Style.make(
+            ~borderBottomWidth="1px",
+            ~borderBottomStyle="solid",
+            ~borderBottomColor="rgb(0, 0, 0, 0.2)",
+            (),
+          )
+        }>
+        {ReasonReact.string(header)}
+      </div>
       <div>
         {
           ReasonReact.array(

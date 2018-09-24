@@ -8,7 +8,7 @@ let component = ReasonReact.reducerComponent("App");
 let make = _children => {
   ...component,
   initialState: () => {
-    dataString: "de 00 12 a1 30 00 a1 31 01 a1 32 02 a1 33 03 a1 34 04 a1 35 05 a1 36 06 a1 37 07 a1 38 08 a1 39 09 a2 31 30 0a a2 31 31 0b a2 31 32 0c a2 31 33 0d a2 31 34 0e a2 31 35 0f a2 31 36 10 a2 31 37 11",
+    dataString: "82 a7 63 6f 6d 70 61 63 74 c3 a6 73 63 68 65 6d 61 00",
   },
   reducer: (action, _state) =>
     switch (action) {

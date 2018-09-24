@@ -14,18 +14,14 @@ let make =
         )
       }>
       <Block header={Printf.sprintf("str(%i)", len)} raw=header />
-      {
-        ReasonReact.array(
-          Array.mapi(
-            (i, c) =>
-              <Block
-                raw=[c]
-                header={String.make(1, c->char_of_int)}
-                key={string_of_int(i)}
-              />,
-            strContent->Array.of_list,
-          ),
-        )
-      }
+      <Block
+        raw=strContent
+        header={
+          String.concat(
+            "",
+            List.map(c => String.make(1, c->char_of_int), strContent),
+          )
+        }
+      />
     </div>,
 };

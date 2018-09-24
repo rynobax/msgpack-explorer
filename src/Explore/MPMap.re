@@ -22,6 +22,22 @@ let make =
         )
       }>
       <Block header={Printf.sprintf("map(%i)", len / 2)} raw=header />
-      {ReasonReact.array(mapContent)}
+      {
+        ReasonReact.array(
+          Array.mapi(
+            (i, el) =>
+              i mod 2 == 0 ?
+                ReasonReact.array([|
+                  <div style={ReactDOMRe.Style.make(~width="100%", ())} />,
+                  el,
+                |]) :
+                ReasonReact.array([|
+                  <div style={ReactDOMRe.Style.make(~width="24px", ())} />,
+                  el,
+                |]),
+            mapContent,
+          ),
+        )
+      }
     </div>,
 };
