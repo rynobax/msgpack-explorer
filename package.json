@@ -7,7 +7,8 @@
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
-    "webpack:production": "NODE_ENV=production webpack"
+    "webpack:production": "cross-env NODE_ENV=production webpack",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "BuckleScript"
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "bs-platform": "^4.0.5",
+    "gh-pages": "^2.0.0",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.8"
