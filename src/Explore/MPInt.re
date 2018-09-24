@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("MPString");
+let component = ReasonReact.statelessComponent("MPInt");
 
 let make =
     (

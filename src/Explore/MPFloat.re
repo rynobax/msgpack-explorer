@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("MPString");
+let component = ReasonReact.statelessComponent("MPFloat");
 
 let make = (~header: int, ~raw: list(int), ~num: float, _children) => {
   ...component,

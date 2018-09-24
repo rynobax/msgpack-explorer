@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("MPString");
+let component = ReasonReact.statelessComponent("Block");
 
 let make = (~header: string, ~raw: list(int), ~color: string="", _children) => {
   ...component,
