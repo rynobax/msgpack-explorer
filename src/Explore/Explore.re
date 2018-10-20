@@ -40,7 +40,7 @@ let make = (~dataString, _children) => {
             | _ => 0
             };
           (
-            <Cell header=num->string_of_int raw=[a] color=Color.int key />,
+            <Cell header={num->string_of_int} raw=[a] color=Color.int key />,
             rest,
           );
 
@@ -54,7 +54,7 @@ let make = (~dataString, _children) => {
             )
             - 256;
           (
-            <Cell header=num->string_of_int raw=[a] color=Color.int key />,
+            <Cell header={num->string_of_int} raw=[a] color=Color.int key />,
             rest,
           );
 
@@ -116,13 +116,13 @@ let make = (~dataString, _children) => {
         | 0xca =>
           /* Float 32 */
           let (raw, tail) = Util.splitAt(rest, 4);
-          let num = Util.hex_of_int_list(raw)->float_of_string;
+          let num = Array.of_list(raw)->Util.parseFloat;
           (<MPFloat header=a raw num key />, tail);
 
         | 0xcb =>
           /* Float 64 */
           let (raw, tail) = Util.splitAt(rest, 8);
-          let num = Util.hex_of_int_list(raw)->float_of_string;
+          let num = Array.of_list(raw)->Util.parseFloat;
           (<MPFloat header=a raw num key />, tail);
 
         /* STRINGS */
