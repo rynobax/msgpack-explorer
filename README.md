@@ -13,4 +13,4 @@ npm run webpack
 
 - Fix floating point parsing
 - Hover stuff
-- Put each map key value pair on a new line
+- Page header for SEO?
