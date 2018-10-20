@@ -17,16 +17,17 @@ let make = (~dataString, _children) => {
       try (msgpack##decode(capitalHexList)->Js.Json.stringifyWithSpace(2)) {
       | _ => "Invalid messagepack data"
       };
-    <pre
+    <div
       style={
         ReactDOMRe.Style.make(
           ~backgroundColor="papayawhip",
           ~width="100%",
           ~flex="1",
+          ~wordBreak="break-word",
           (),
         )
       }>
       {ReasonReact.string(jsonStr)}
-    </pre>;
+    </div>;
   },
 };

@@ -13,3 +13,4 @@ npm run webpack
 
 - Fix floating point parsing
 - Hover stuff
+- Page header for SEO?

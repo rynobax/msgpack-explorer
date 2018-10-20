@@ -15,6 +15,8 @@ let make = (~header: string, ~raw: list(int), ~color: string="", _children) => {
           ~borderWidth="1px",
           ~borderStyle="solid",
           ~borderColor="rgb(0, 0, 0, 0.2)",
+          ~minWidth="64px",
+          ~wordBreak="break-word",
           (),
         )
       }>
