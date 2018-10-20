@@ -24,3 +24,20 @@ let addSign = (value: int64, nBits: int) => {
 
 let hex_of_int_list = (l: list(int)) =>
   "0x" ++ String.concat("", List.map(Printf.sprintf("%02X"), l));
+
+let parseFloat: array(int) => float = [%bs.raw
+  {|
+  function (arr) {
+    const bops = require('bops');
+    const b = bops.from(arr);
+    console.log(arr.length)
+    if(arr.length === 4) {
+      return bops.readFloatBE(b);
+    } else if(arr.length === 8) {
+      return bops.readDoubleBE(b);
+    } else {
+      return NaN;
+    }
+  }
+|}
+];
