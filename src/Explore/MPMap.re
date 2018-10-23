@@ -26,15 +26,26 @@ let make =
         ReasonReact.array(
           Array.mapi(
             (i, el) =>
-              i mod 2 == 0 ?
+              if (i mod 2 == 0) {
+                ReasonReact.null;
+              } else {
+                let lastEl = mapContent[i - 1];
                 ReasonReact.array([|
                   <div style={ReactDOMRe.Style.make(~width="100%", ())} />,
-                  el,
-                |]) :
-                ReasonReact.array([|
-                  <div style={ReactDOMRe.Style.make(~width="24px", ())} />,
-                  el,
-                |]),
+                  <div
+                    style={
+                      ReactDOMRe.Style.make(
+                        ~display="flex",
+                        ~alignItems="center",
+                        ~margin="4px",
+                        (),
+                      )
+                    }>
+                    lastEl
+                    el
+                  </div>,
+                |]);
+              },
             mapContent,
           ),
         )
